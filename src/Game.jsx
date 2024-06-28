@@ -1,6 +1,6 @@
 // src/Game.jsx
-import React, { useState } from 'react';
-import Square from './components/Square';
+import React, { useState } from "react";
+import Square from "./components/Square";
 
 const Game = () => {
   const [squares, setSquares] = useState(Array(9).fill(null));
@@ -12,7 +12,7 @@ const Game = () => {
       return;
     }
     const newSquares = [...squares];
-    newSquares[index] = xIsNext ? 'X' : 'O';
+    newSquares[index] = xIsNext ? "X" : "O";
     setSquares(newSquares);
     setXIsNext(!xIsNext);
     setWinner(calculateWinner(newSquares));
@@ -26,11 +26,21 @@ const Game = () => {
 
   const status = winner
     ? `Winner: ${winner}`
-    : `Next player: ${xIsNext ? 'X' : 'O'}`;
+    : `Next player: ${xIsNext ? "X" : "O"}`;
 
   return (
     <div className="flex flex-col items-center mt-10">
-      <div className={`mb-4 text-2xl font-bold ${winner ? 'text-green-500 animate-bounce' : ''}`}>
+      <div
+        className={`mb-4 text-2xl font-bold ${
+          winner === "O"
+            ? "text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-cyan-500 animate-bounce"
+            : ""
+        } ${
+          winner === "X"
+            ? "text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-pink-500 animate-bounce"
+            : null
+        } ${xIsNext ? "text-red-500" : "text-blue-500"}`}
+      >
         {status}
       </div>
       <div className="grid grid-cols-3 gap-1">
@@ -43,7 +53,7 @@ const Game = () => {
         ))}
       </div>
       <button
-        className="mt-4 btn btn-outline btn-primary w-full"
+        className="mt-4 btn btn-outline btn-primary w-full text-xl"
         onClick={handleReset}
       >
         Reset

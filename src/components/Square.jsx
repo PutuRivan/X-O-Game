@@ -6,8 +6,8 @@ const Square = ({ value, onClick }) => {
   return (
     <button
       className={clsx(
-        'w-16 h-16 m-1 bg-gray-200 text-3xl font-bold',
-        value === 'X' && 'text-red-500',
+        'w-16 h-16 m-1 bg-gray-300 text-3xl font-bold',
+        value === 'X' && 'text-red-500 ',
         value === 'O' && 'text-blue-500',
       )}
       onClick={onClick}
